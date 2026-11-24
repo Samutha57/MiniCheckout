@@ -4,7 +4,6 @@ import ProductCard3D from './components/ProductCard3D.jsx';
 import Cart from './components/Cart.jsx';
 import OrderConfirmation from './components/OrderConfirmation.jsx';
 import { PRODUCTS } from './constants/products.js';
-import { Sparkles, Cpu, Layers } from 'lucide-react';
 
 export default function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -18,7 +17,7 @@ export default function App() {
 
   // Add product to cart
   const handleAddToCart = (product) => {
-    setValidationError(''); // Clear validation errors on active cart modification
+    setValidationError('');
     setCartItems((prevItems) => {
       const existing = prevItems.find((item) => item.id === product.id);
       if (existing) {
@@ -99,7 +98,6 @@ export default function App() {
       })
     };
 
-    // Refined transition to confirmation
     setConfirmedOrder(completedOrder);
     setCartItems([]);
     setIsSubmitting(false);
@@ -116,45 +114,35 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col neo-bg-ambient selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div className="min-h-screen flex flex-col neo-bg-ambient selection:bg-cyan-500/30 selection:text-cyan-200 overflow-x-hidden">
       <Header />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8">
         {confirmedOrder ? (
           <OrderConfirmation order={confirmedOrder} onReset={handleResetOrder} />
         ) : (
-          <div className="space-y-10">
-            {/* Hero / Section Intro */}
-            <div className="text-center max-w-2xl mx-auto space-y-3">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase">
-                <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Next-Gen SDET Benchmark Interface</span>
-              </div>
-              <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
-                Ultra-Precision <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-violet-400">Checkout</span>
+          <div className="space-y-6 sm:space-y-8">
+            {/* Clean, user-friendly intro */}
+            <div className="text-center max-w-xl mx-auto space-y-1.5">
+              <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+                Shopping Made <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-violet-400">Simple</span>
               </h1>
-              <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-                Interact with precision 3D hardware products, tune quantities, and place your order with verified synchronous duplicate-submission immunity.
+              <p className="text-slate-400 text-xs sm:text-sm">
+                Select your products, adjust quantities, and complete your order with ease.
               </p>
             </div>
 
-            {/* Main Interactive Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/* Product Selection Area (7 Columns on Large) */}
-              <div className="lg:col-span-7 space-y-6">
-                <div className="flex items-center justify-between pb-2">
-                  <div className="flex items-center space-x-2 text-white">
-                    <Layers className="w-4 h-4 text-cyan-400" />
-                    <h2 className="text-base font-bold font-mono tracking-wider uppercase">
-                      Hardware Catalogue (2 SKUs)
-                    </h2>
-                  </div>
-                  <span className="text-xs text-slate-400 font-mono">
-                    Interactive 3D Tilt Enabled
-                  </span>
+            {/* Main Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+              {/* Products Area */}
+              <div className="lg:col-span-7 space-y-4">
+                <div className="flex items-center justify-between pb-1">
+                  <h2 className="text-sm font-bold font-mono tracking-wider uppercase text-white">
+                    Our Products
+                  </h2>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {PRODUCTS.map((product) => {
                     const cartItem = cartItems.find((i) => i.id === product.id);
                     return (
@@ -169,8 +157,8 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Shopping Cart & Checkout Manifest (5 Columns on Large) */}
-              <div className="lg:col-span-5 sticky top-28">
+              {/* Shopping Cart */}
+              <div className="lg:col-span-5 sticky top-20">
                 <Cart
                   cartItems={cartItems}
                   onUpdateQuantity={handleUpdateQuantity}
@@ -188,8 +176,8 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-900 bg-[#04060C] py-6 text-center text-xs text-slate-400 font-mono">
-        <p>NEO CHECKOUT • Fynd Hiring Hackathon 2026 • High-Reliability SDET Architecture</p>
+      <footer className="border-t border-slate-900 bg-[#04060C] py-4 text-center text-xs text-slate-500 font-mono">
+        <p>NEO CHECKOUT • Fynd Hiring Hackathon 2026</p>
       </footer>
     </div>
   );
