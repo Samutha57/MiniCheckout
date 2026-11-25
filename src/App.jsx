@@ -117,25 +117,15 @@ export default function App() {
     <div className="min-h-screen lg:h-screen lg:max-h-screen flex flex-col justify-between neo-bg-ambient selection:bg-cyan-500/30 selection:text-cyan-200 overflow-x-hidden">
       <Header />
 
-      <main className="flex-1 flex flex-col justify-center max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-2.5">
+      <main className="flex-1 flex flex-col justify-center max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-3">
         {confirmedOrder ? (
           <OrderConfirmation order={confirmedOrder} onReset={handleResetOrder} />
         ) : (
-          <div className="space-y-2 sm:space-y-3 lg:space-y-3">
-            {/* Main Page Title: Shopping Made Simple */}
-            <div className="text-center max-w-xl mx-auto space-y-0.5">
-              <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-white leading-tight">
-                Shopping Made <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-violet-400">Simple</span>
-              </h1>
-              <p className="text-slate-400 text-xs">
-                Select your products, adjust quantities, and complete your order with ease.
-              </p>
-            </div>
-
+          <div className="space-y-3 sm:space-y-4">
             {/* Main Grid: Products on Left/Center, Cart on Right */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 items-stretch">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-stretch">
               {/* Products Area */}
-              <div className="lg:col-span-7 flex flex-col justify-between space-y-1.5">
+              <div className="lg:col-span-7 flex flex-col justify-between space-y-2">
                 <div className="flex items-center justify-between pb-0.5">
                   <h2 className="text-xs sm:text-sm font-bold font-mono tracking-wider uppercase text-white">
                     Our Products
@@ -177,7 +167,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="border-t border-slate-900 bg-[#04060C] py-2 text-center text-[11px] text-slate-500 font-mono flex-shrink-0">
-        <p>NEO CHECKOUT • Fynd Hiring Hackathon 2026</p>
+        <p>Shopping Made Simple</p>
       </footer>
     </div>
   );
