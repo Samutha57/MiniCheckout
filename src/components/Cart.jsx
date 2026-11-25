@@ -21,13 +21,13 @@ export default function Cart({
         <div className="flex items-center justify-between pb-2.5 border-b border-cyan-500/15">
           <div className="flex items-center space-x-2">
             <div className="p-1.5 rounded-lg bg-cyan-950/60 border border-cyan-500/30 text-cyan-400">
-              <ShoppingBag className="w-3.5 h-3.5" />
+              <ShoppingBag className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="text-base sm:text-lg font-bold text-white tracking-wide">
+              <h2 className="text-[23px] font-bold text-white tracking-wide leading-tight">
                 Your Shopping Cart
               </h2>
-              <p className="text-[11px] text-slate-400 font-mono">
+              <p className="text-[12px] text-slate-400 font-mono">
                 {totalUnits} {totalUnits === 1 ? 'item' : 'items'}
               </p>
             </div>
@@ -44,8 +44,8 @@ export default function Cart({
               <div className="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center text-slate-400 mb-1 border border-slate-800">
                 <ShoppingBag className="w-4 h-4" />
               </div>
-              <p className="text-xs font-semibold text-slate-300">Your cart is empty</p>
-              <p className="text-[11px] text-slate-400 mt-0.5 max-w-xs">
+              <p className="text-[14px] font-semibold text-slate-300">Your cart is empty</p>
+              <p className="text-[12px] text-slate-400 mt-0.5 max-w-xs">
                 Select products from our store to proceed with checkout.
               </p>
             </div>
@@ -73,11 +73,11 @@ export default function Cart({
                     <div>
                       <h4
                         data-testid={`cart-item-name-${item.numericId}`}
-                        className="text-xs font-semibold text-white tracking-tight"
+                        className="text-[14px] font-semibold text-white tracking-tight"
                       >
                         {item.name}
                       </h4>
-                      <p className="text-[10px] font-mono text-slate-400">
+                      <p className="text-[11px] font-mono text-slate-400">
                         {item.formattedPrice} × {item.quantity}
                       </p>
                     </div>
@@ -117,7 +117,7 @@ export default function Cart({
                     <div className="text-right min-w-[55px]">
                       <span
                         data-testid={`line-total-${item.numericId}`}
-                        className="font-mono font-bold text-xs sm:text-sm text-cyan-300"
+                        className="font-mono font-bold text-[14px] text-cyan-300"
                       >
                         ₹{lineTotal.toLocaleString('en-IN')}
                       </span>
@@ -144,7 +144,7 @@ export default function Cart({
         <div className="pt-2.5 border-t border-slate-800/90 space-y-1.5">
           <label
             htmlFor="customer-name"
-            className="block text-[11px] font-semibold tracking-wide text-slate-300"
+            className="block text-[15px] font-semibold tracking-wide text-slate-300"
           >
             Your Name <span className="text-rose-400">*</span>
           </label>
@@ -159,7 +159,7 @@ export default function Cart({
               placeholder="Enter your full name..."
               value={customerName}
               onChange={(e) => onCustomerNameChange(e.target.value)}
-              className="w-full px-3 py-1.5 rounded-lg bg-slate-950/70 border border-slate-800 text-white placeholder-slate-400 text-xs focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 transition-all font-medium"
+              className="w-full px-3.5 py-2 rounded-lg bg-slate-950/70 border border-slate-800 text-white placeholder-slate-400 text-[15px] focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 transition-all font-medium"
             />
           </div>
 
@@ -168,7 +168,7 @@ export default function Cart({
             <div
               data-testid="validation-error"
               role="alert"
-              className="flex items-center space-x-1.5 p-2 rounded-lg bg-rose-950/40 border border-rose-500/40 text-rose-300 text-[11px] font-medium animate-fadeIn"
+              className="flex items-center space-x-1.5 p-2 rounded-lg bg-rose-950/40 border border-rose-500/40 text-rose-300 text-xs font-medium animate-fadeIn"
             >
               <AlertCircle className="w-3.5 h-3.5 flex-shrink-0 text-rose-400" />
               <span>{validationError}</span>
@@ -181,12 +181,12 @@ export default function Cart({
       <div className="pt-2.5 mt-2.5 border-t border-cyan-500/15 space-y-2">
         {/* Order Grand Total */}
         <div className="flex items-baseline justify-between">
-          <span className="text-[11px] font-mono uppercase text-slate-400 tracking-wider">
+          <span className="text-[12px] font-mono uppercase text-slate-400 tracking-wider">
             Total Amount
           </span>
           <span
             data-testid="order-total"
-            className="text-lg sm:text-xl font-black font-mono tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-sky-200"
+            className="text-[21px] font-black font-mono tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-sky-200"
           >
             ₹{totalAmount.toLocaleString('en-IN')}
           </span>
@@ -199,7 +199,7 @@ export default function Cart({
           aria-label="Complete Checkout"
           disabled={isSubmitting}
           onClick={onCheckout}
-          className={`w-full py-2.5 px-4 rounded-xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-300 flex items-center justify-center space-x-1.5 shadow-lg ${
+          className={`w-full py-2.5 px-4 rounded-xl font-bold text-[16px] sm:text-[17px] tracking-wide transition-all duration-300 flex items-center justify-center space-x-1.5 shadow-lg ${
             isSubmitting
               ? 'opacity-60 cursor-not-allowed bg-slate-800 text-slate-400'
               : 'bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 text-slate-950 hover:from-cyan-400 hover:via-sky-400 hover:to-blue-500 hover:shadow-[0_0_20px_rgba(0,242,254,0.4)] active:scale-[0.98]'
@@ -213,7 +213,7 @@ export default function Cart({
           ) : (
             <>
               <span className="text-slate-950 font-extrabold uppercase">Complete Checkout</span>
-              <ArrowRight className="w-3.5 h-3.5 text-slate-950" />
+              <ArrowRight className="w-4 h-4 text-slate-950" />
             </>
           )}
         </button>

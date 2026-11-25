@@ -117,17 +117,24 @@ export default function App() {
     <div className="min-h-screen lg:h-screen lg:max-h-screen flex flex-col justify-between neo-bg-ambient selection:bg-cyan-500/30 selection:text-cyan-200 overflow-x-hidden">
       <Header />
 
-      <main className="flex-1 flex flex-col justify-center max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-3">
+      <main className="flex-1 flex flex-col justify-center max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5">
         {confirmedOrder ? (
           <OrderConfirmation order={confirmedOrder} onReset={handleResetOrder} />
         ) : (
-          <div className="space-y-3 sm:space-y-4">
-            {/* Main Grid: Products on Left/Center, Cart on Right */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-stretch">
+          <div className="space-y-2 sm:space-y-2.5">
+            {/* Main Title: Shopping Made Simple (Centered, 38–42px, below top bar) */}
+            <div className="text-center my-0.5 sm:my-1">
+              <h1 className="text-[36px] sm:text-[38px] lg:text-[40px] font-extrabold tracking-tight text-white leading-tight">
+                Shopping Made <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-violet-400">Simple</span>
+              </h1>
+            </div>
+
+            {/* Main Grid: Two products on Left, Shopping Cart on Right */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 items-stretch">
               {/* Products Area */}
-              <div className="lg:col-span-7 flex flex-col justify-between space-y-2">
+              <div className="lg:col-span-7 flex flex-col justify-between space-y-1.5">
                 <div className="flex items-center justify-between pb-0.5">
-                  <h2 className="text-xs sm:text-sm font-bold font-mono tracking-wider uppercase text-white">
+                  <h2 className="text-[13px] font-bold font-mono tracking-wider uppercase text-white">
                     Our Products
                   </h2>
                 </div>
@@ -164,11 +171,6 @@ export default function App() {
           </div>
         )}
       </main>
-
-      {/* Footer */}
-      <footer className="border-t border-slate-900 bg-[#04060C] py-2 text-center text-[11px] text-slate-500 font-mono flex-shrink-0">
-        <p>Shopping Made Simple</p>
-      </footer>
     </div>
   );
 }

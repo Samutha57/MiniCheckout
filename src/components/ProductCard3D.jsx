@@ -70,7 +70,7 @@ export default function ProductCard3D({ product, onAddToCart, inCartQuantity = 0
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={transformStyle}
-      className="relative group rounded-2xl p-3.5 sm:p-4 glass-panel hover:border-cyan-400/40 transition-colors duration-300 flex flex-col justify-between overflow-hidden shadow-neo-card h-full"
+      className="relative group rounded-2xl p-4 sm:p-4.5 glass-panel hover:border-cyan-400/40 transition-colors duration-300 flex flex-col justify-between overflow-hidden shadow-neo-card h-full"
     >
       {/* Glare Dynamic Overlay */}
       {!prefersReducedMotion && (
@@ -91,7 +91,7 @@ export default function ProductCard3D({ product, onAddToCart, inCartQuantity = 0
 
       {/* Top Meta */}
       <div className="relative z-10 flex items-center justify-between mb-1">
-        <span className="text-[10px] font-mono tracking-wider font-semibold px-2 py-0.5 rounded-full bg-slate-900/80 border border-slate-700/60 text-slate-300">
+        <span className="text-[13px] font-mono tracking-wider font-semibold px-2.5 py-0.5 rounded-full bg-slate-900/80 border border-slate-700/60 text-slate-300">
           {product.category}
         </span>
       </div>
@@ -194,16 +194,16 @@ export default function ProductCard3D({ product, onAddToCart, inCartQuantity = 0
           <div>
             <h3
               data-testid={`product-name-${product.numericId}`}
-              className="text-sm sm:text-base font-bold text-white tracking-tight"
+              className="text-[20px] font-bold text-white tracking-tight"
             >
               {product.name}
             </h3>
-            <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-1">{product.tagline}</p>
+            <p className="text-[14px] text-slate-400 mt-0.5 line-clamp-1">{product.tagline}</p>
           </div>
           <div className="text-right">
             <span
               data-testid={`product-price-${product.numericId}`}
-              className="text-base sm:text-lg font-black font-mono tracking-tight text-white block"
+              className="text-[21px] font-black font-mono tracking-tight text-white block"
             >
               {product.formattedPrice}
             </span>
@@ -211,11 +211,11 @@ export default function ProductCard3D({ product, onAddToCart, inCartQuantity = 0
         </div>
 
         {/* Specs Pills */}
-        <div className="flex flex-wrap gap-1 pt-0.5">
+        <div className="flex flex-wrap gap-1.5 pt-1">
           {product.specs.map((spec, i) => (
             <span
               key={i}
-              className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-900/90 text-slate-400 border border-slate-800"
+              className="text-[13px] font-mono px-2 py-0.5 rounded bg-slate-900/90 text-slate-400 border border-slate-800"
             >
               {spec}
             </span>
@@ -227,12 +227,12 @@ export default function ProductCard3D({ product, onAddToCart, inCartQuantity = 0
       <div className="relative z-10 pt-2.5 mt-2 border-t border-slate-800/80 flex items-center justify-between">
         <div className="flex items-center space-x-1">
           {inCartQuantity > 0 ? (
-            <span className="inline-flex items-center space-x-1 text-[11px] font-mono font-medium text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded-full border border-cyan-500/30">
-              <Check className="w-2.5 h-2.5" />
+            <span className="inline-flex items-center space-x-1 text-[12px] font-mono font-medium text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded-full border border-cyan-500/30">
+              <Check className="w-3 h-3" />
               <span>{inCartQuantity} in cart</span>
             </span>
           ) : (
-            <span className="text-[11px] text-slate-400 font-mono">In Stock</span>
+            <span className="text-[13px] text-slate-400 font-mono">In Stock</span>
           )}
         </div>
 
@@ -240,14 +240,14 @@ export default function ProductCard3D({ product, onAddToCart, inCartQuantity = 0
           type="button"
           data-testid={`add-to-cart-${product.numericId}`}
           onClick={handleAdd}
-          className={`relative group/btn inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg font-semibold text-xs transition-all duration-200 shadow-md ${
+          className={`relative group/btn inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg font-semibold text-[14px] transition-all duration-200 shadow-md ${
             isAdding
               ? 'scale-95 bg-cyan-400 text-slate-950 shadow-cyan-400/40'
               : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-400 hover:to-blue-500 hover:shadow-[0_0_15px_rgba(0,242,254,0.35)] active:scale-95'
           }`}
           aria-label={`Add ${product.name} to cart`}
         >
-          <ShoppingCart className={`w-3 h-3 transition-transform ${isAdding ? 'scale-125' : 'group-hover/btn:-translate-y-0.5'}`} />
+          <ShoppingCart className={`w-3.5 h-3.5 transition-transform ${isAdding ? 'scale-125' : 'group-hover/btn:-translate-y-0.5'}`} />
           <span>{isAdding ? 'Adding...' : 'Add to Cart'}</span>
         </button>
       </div>
