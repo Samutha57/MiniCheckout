@@ -1,11 +1,24 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('NEO CHECKOUT — Automated Browser Test Suite', () => {
+  let consoleErrors = [];
 
   test.beforeEach(async ({ page }) => {
+    consoleErrors = [];
+    page.on('pageerror', (err) => consoleErrors.push(err.message));
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') {
+        consoleErrors.push(msg.text());
+      }
+    });
+
     // Ensure every test starts with an independent, fresh browser state
     await page.goto('http://127.0.0.1:5173');
     await page.waitForLoadState('networkidle');
+  });
+
+  test.afterEach(async () => {
+    expect(consoleErrors, 'No console errors or unhandled exceptions should occur').toEqual([]);
   });
 
   test('TEST 1: Verifies successful checkout and visible order reference', async ({ page }) => {
@@ -193,7 +206,6 @@ test.describe('NEO CHECKOUT — Automated Browser Test Suite', () => {
 
     for (const res of desktopResolutions) {
       await page.setViewportSize({ width: res.width, height: res.height });
-      await page.waitForTimeout(100);
 
       // Verify header, cards, and checkout button are in viewport
       await expect(page.getByTestId('product-card-1')).toBeInViewport();
