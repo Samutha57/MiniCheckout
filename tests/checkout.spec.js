@@ -180,4 +180,41 @@ test.describe('NEO CHECKOUT — Automated Browser Test Suite', () => {
     await page.screenshot({ path: 'screenshots/test5-rapid-double-click-protection.png', fullPage: true });
   });
 
+  test('TEST 6: Viewport fitting verification - ensures complete checkout page fits without scrolling at 1920x1080, 1792x849, 1366x768, and 1280x720', async ({ page }) => {
+    const desktopResolutions = [
+      { name: '1920x1080', width: 1920, height: 1080 },
+      { name: '1792x849', width: 1792, height: 849 },
+      { name: '1366x768', width: 1366, height: 768 },
+      { name: '1280x720', width: 1280, height: 720 },
+    ];
+
+    // Add an item to test the populated cart layout as well
+    await page.getByTestId('add-to-cart-1').click();
+
+    for (const res of desktopResolutions) {
+      await page.setViewportSize({ width: res.width, height: res.height });
+      await page.waitForTimeout(100);
+
+      // Verify header, cards, and checkout button are in viewport
+      await expect(page.getByTestId('product-card-1')).toBeInViewport();
+      await expect(page.getByTestId('product-card-2')).toBeInViewport();
+      await expect(page.getByTestId('checkout-button')).toBeInViewport();
+
+      // Verify no horizontal or vertical overflow on document element
+      const overflow = await page.evaluate(() => {
+        const doc = document.documentElement;
+        return {
+          hasVerticalScroll: doc.scrollHeight > window.innerHeight + 2, // 2px subpixel margin
+          hasHorizontalScroll: doc.scrollWidth > window.innerWidth + 2,
+        };
+      });
+
+      expect(overflow.hasVerticalScroll, `Vertical scroll detected at ${res.name}`).toBe(false);
+      expect(overflow.hasHorizontalScroll, `Horizontal scroll detected at ${res.name}`).toBe(false);
+
+      // Capture viewport evidence screenshot
+      await page.screenshot({ path: `screenshots/viewport-${res.name}.png` });
+    }
+  });
+
 });

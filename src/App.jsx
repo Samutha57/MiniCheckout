@@ -80,7 +80,7 @@ export default function App() {
     setIsSubmitting(true);
     setValidationError('');
 
-    // Generate unique order reference (e.g. ORD-NEO-L9X8B2)
+    // Generate unique order reference
     const uniqueSuffix = Math.random().toString(36).substring(2, 7).toUpperCase();
     const timestampPart = Date.now().toString(36).toUpperCase();
     const orderRef = `ORD-NEO-${timestampPart}-${uniqueSuffix}`;
@@ -114,35 +114,35 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col neo-bg-ambient selection:bg-cyan-500/30 selection:text-cyan-200 overflow-x-hidden">
+    <div className="min-h-screen lg:h-screen lg:max-h-screen flex flex-col justify-between neo-bg-ambient selection:bg-cyan-500/30 selection:text-cyan-200 overflow-x-hidden">
       <Header />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8">
+      <main className="flex-1 flex flex-col justify-center max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-2.5">
         {confirmedOrder ? (
           <OrderConfirmation order={confirmedOrder} onReset={handleResetOrder} />
         ) : (
-          <div className="space-y-6 sm:space-y-8">
-            {/* Clean, user-friendly intro */}
-            <div className="text-center max-w-xl mx-auto space-y-1.5">
-              <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+          <div className="space-y-2 sm:space-y-3 lg:space-y-3">
+            {/* Main Page Title: Shopping Made Simple */}
+            <div className="text-center max-w-xl mx-auto space-y-0.5">
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-white leading-tight">
                 Shopping Made <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-violet-400">Simple</span>
               </h1>
-              <p className="text-slate-400 text-xs sm:text-sm">
+              <p className="text-slate-400 text-xs">
                 Select your products, adjust quantities, and complete your order with ease.
               </p>
             </div>
 
-            {/* Main Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            {/* Main Grid: Products on Left/Center, Cart on Right */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 items-stretch">
               {/* Products Area */}
-              <div className="lg:col-span-7 space-y-4">
-                <div className="flex items-center justify-between pb-1">
-                  <h2 className="text-sm font-bold font-mono tracking-wider uppercase text-white">
+              <div className="lg:col-span-7 flex flex-col justify-between space-y-1.5">
+                <div className="flex items-center justify-between pb-0.5">
+                  <h2 className="text-xs sm:text-sm font-bold font-mono tracking-wider uppercase text-white">
                     Our Products
                   </h2>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 flex-1 items-stretch">
                   {PRODUCTS.map((product) => {
                     const cartItem = cartItems.find((i) => i.id === product.id);
                     return (
@@ -158,7 +158,7 @@ export default function App() {
               </div>
 
               {/* Shopping Cart */}
-              <div className="lg:col-span-5 sticky top-20">
+              <div className="lg:col-span-5 flex flex-col justify-between">
                 <Cart
                   cartItems={cartItems}
                   onUpdateQuantity={handleUpdateQuantity}
@@ -176,7 +176,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-900 bg-[#04060C] py-4 text-center text-xs text-slate-500 font-mono">
+      <footer className="border-t border-slate-900 bg-[#04060C] py-2 text-center text-[11px] text-slate-500 font-mono flex-shrink-0">
         <p>NEO CHECKOUT • Fynd Hiring Hackathon 2026</p>
       </footer>
     </div>

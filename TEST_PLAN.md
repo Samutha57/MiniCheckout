@@ -14,6 +14,7 @@ This document details the test matrix, test cases, execution steps, expected out
 | **TC-CALC-003** | Quantity & Price Sync | `P0 (Critical)` | Automated (Playwright) | **PASSED** | Fresh state, added Mouse, incremented to 2; line total ₹1,598 and order total ₹1,598 verified. |
 | **TC-VAL-004** | Empty Cart Guard | `P1 (High)` | Manual & Automated | **PASSED** | Blank cart blocks checkout, displays empty cart validation warning, 0 orders placed. |
 | **TC-CONC-005** | Duplicate Submission Guard | `P0 (Critical)` | Manual & Automated | **PASSED** | Synchronous ref guard suppresses rapid double clicks; strictly 1 confirmation & 1 reference generated. |
+| **TC-VIEW-006** | Desktop Viewport Fitting | `P0 (Critical)` | Automated (Playwright) | **PASSED** | Zero vertical & horizontal scroll across 1920x1080, 1792x849, 1366x768, and 1280x720 resolutions. Checkout button fully visible in viewport. |
 
 ---
 
@@ -118,10 +119,39 @@ This document details the test matrix, test cases, execution steps, expected out
 
 ---
 
+### TC-VIEW-006: Desktop Viewport Fitting & Zero Scroll Verification
+- **Priority**: P0 (Critical)
+- **Preconditions**: Application loaded with populated cart.
+- **Resolutions Evaluated**:
+  - `1920 × 1080` (Full HD Desktop)
+  - `1792 × 849` (Widescreen Windowed)
+  - `1366 × 768` (Standard Laptop)
+  - `1280 × 720` (Compact HD Display)
+- **Steps**:
+  1. Populate cart with products.
+  2. For each resolution, set viewport size.
+  3. Assert header, both product cards, and checkout button are strictly within the visible viewport (`toBeInViewport()`).
+  4. Measure document scroll dimensions against window inner dimensions:
+     - `doc.scrollHeight <= window.innerHeight` (no vertical scroll).
+     - `doc.scrollWidth <= window.innerWidth` (no horizontal scroll).
+- **Expected Results**:
+  - Full interface visible on screen without scrollbars at all 4 resolutions.
+  - Zero clipping or hidden controls.
+- **Actual Result**:
+  - Confirmed: All controls within visible viewport; zero vertical and horizontal overflow measured at 1920x1080, 1792x849, 1366x768, and 1280x720.
+- **Status**: **PASSED**
+- **Evidence**:
+  - `screenshots/viewport-1920x1080.png`
+  - `screenshots/viewport-1792x849.png`
+  - `screenshots/viewport-1366x768.png`
+  - `screenshots/viewport-1280x720.png`
+
+---
+
 ## 🏆 Audit Summary
 
-- **Total Test Cases Executed**: 5 (3 Core Mandatory + 2 Supporting Quality Gates)
-- **Passed**: 5
+- **Total Test Cases Executed**: 6 (3 Core Mandatory + 3 Quality & Responsive Verification Gates)
+- **Passed**: 6
 - **Failed**: 0
 - **Regression / Flakiness**: None detected
 - **Browser Automation Suite**: Playwright v1.49.1 (Chromium)
